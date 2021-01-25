@@ -8,17 +8,23 @@ class Persona(models.Model):
     apellido = models.CharField(max_length=45)
     correo = models.CharField(max_length= 45)
     telefono = models.CharField(max_length=10)
+
     def __str__(self):
         return self.nombre + " " + self.apellido
+
+
 class Login(models.Model):
     user =  models.ForeignKey(Persona, on_delete=models.CASCADE)
     password = models.CharField(max_length=20)
 
+
 class Campana(models.Model):
     nombre = models.CharField(max_length=45)
     user = models.ForeignKey(Persona, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.nombre
+
 
 class Donaciones(models.Model):
     categoria = models.CharField(max_length=15)
