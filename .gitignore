@@ -1,0 +1,41 @@
+# Miscellaneous
+donaciones_fronted/*.class
+donaciones_fronted/*.log
+donaciones_fronted/*.pyc
+donaciones_fronted/*.swp
+donaciones_fronted/.DS_Store
+donaciones_fronted/.atom/
+donaciones_fronted/.buildlog/
+donaciones_fronted/.history
+.donaciones_fronted/svn/
+
+# IntelliJ related
+donaciones_fronted/*.iml
+donaciones_fronted/*.ipr
+donaciones_fronted/*.iws
+donaciones_fronted/.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+donaciones_fronted/**/doc/api/
+donaciones_fronted/**/ios/Flutter/.last_build_id
+donaciones_fronted/.dart_tool/
+donaciones_fronted/.flutter-plugins
+donaciones_fronted/.flutter-plugins-dependencies
+donaciones_fronted/.packages
+donaciones_fronted/.pub-cache/
+donaciones_fronted/.pub/
+donaciones_fronted/build/
+
+# Web related
+donaciones_fronted/lib/generated_plugin_registrant.dart
+
+# Symbolication related
+donaciones_fronted/app.*.symbols
+
+# Obfuscation related
+donaciones_fronted/app.*.map.json
