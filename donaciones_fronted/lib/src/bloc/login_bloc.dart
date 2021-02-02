@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:rxdart/rxdart.dart';
-import 'package:donaciones_fronted/src/pages/bloc/validators.dart';
+import 'package:donaciones_fronted/src/bloc/validators.dart';
 
 class LoginBloc with Validators {
   final _userController = BehaviorSubject<String>();

@@ -1,4 +1,4 @@
-import 'package:donaciones_fronted/src/pages/bloc/provider.dart';
+import 'package:donaciones_fronted/src/bloc/provider.dart';
 import 'package:donaciones_fronted/src/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
