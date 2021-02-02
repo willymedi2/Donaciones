@@ -15,4 +15,22 @@ class DonacionProvider {
 
     return true;
   }
+
+  Future<List<DonacionModel>> cargarDonaciones() async {
+    final url = "";
+    final resp = await http.get(url);
+
+    final Map<String, dynamic> decodedData = json.decode(resp.body);
+    final List<DonacionModel> donaciones = new List();
+
+    if (decodedData == null) return [];
+
+    decodedData.forEach((id, dona) {
+      final donaTemp = DonacionModel.fromJson(dona);
+      donaciones.add(donaTemp);
+    });
+
+    print(decodedData);
+    return donaciones;
+  }
 }

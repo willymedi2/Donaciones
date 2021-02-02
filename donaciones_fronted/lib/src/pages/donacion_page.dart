@@ -22,6 +22,12 @@ class _DonacionPageState extends State<DonacionPage> {
           key: formKey,
           child: Column(
             children: [
+              Center(
+                child: Text(
+                  "Haz tu donación",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                ),
+              ),
               _crearCategoria(),
               _crearMetodo(),
               _crearObservacion(),
