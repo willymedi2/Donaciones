@@ -1,9 +1,12 @@
 import 'package:donaciones_fronted/src/bloc/provider.dart';
 import 'package:donaciones_fronted/src//bloc/campana_bloc.dart';
+import 'package:donaciones_fronted/src/providers/campana_provider.dart';
 import 'package:flutter/material.dart';
 //import 'package:line_awesome_icons/line_awesome_icons.dart';
 
 class CampanaPage extends StatefulWidget {
+  static String id = 'registro';
+
   @override
   _CampanaPageState createState() => _CampanaPageState();
 }
@@ -14,6 +17,8 @@ class _CampanaPageState extends State<CampanaPage> {
   @override
   Widget build(BuildContext context) {
     final bloc = Providerr.ofCampana(context);
+    CampanaProvider c = new CampanaProvider();
+    print(c.cargarCampanas());
     return SingleChildScrollView(
       child: Stack(
         children: <Widget>[

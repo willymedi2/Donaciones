@@ -1,5 +1,6 @@
 import 'package:donaciones_fronted/providers/ui_provider.dart';
 import 'package:donaciones_fronted/src/bloc/provider.dart';
+import 'package:donaciones_fronted/src/pages/campana_page.dart';
 import 'package:donaciones_fronted/src/pages/home_page.dart';
 import 'package:donaciones_fronted/src/pages/login_page.dart';
 import 'package:donaciones_fronted/src/pages/register_page.dart';
@@ -29,11 +30,12 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          initialRoute: LoginPage.id,
+          initialRoute: HomePage.id,
           routes: {
             LoginPage.id: (context) => LoginPage(),
             HomePage.id: (context) => HomePage(),
             RegisterPage.id: (context) => RegisterPage(),
+            CampanaPage.id: (context) => CampanaPage()
           },
         ),
       ),

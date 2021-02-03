@@ -1,6 +1,11 @@
 import 'package:donaciones_fronted/src/models/camapana_model.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class CampanaProvider {
+  final String url = 'http://127.0.0.1:8000/campana/';
+  List<CamapanaModel> lista = new List();
+
   List<CamapanaModel> agregarCampanas() {
     CamapanaModel campana1 = new CamapanaModel();
     CamapanaModel campana2 = new CamapanaModel();
@@ -16,5 +21,44 @@ class CampanaProvider {
     lista.add(campana2);
     lista.add(campana3);
     return lista;
+  }
+
+  Future<bool> crearCampana(CamapanaModel campana) async {
+    final url = '';
+    final resp = await http.post(url, body: campana.toJson());
+    final decodeData = json.decode(resp.body);
+
+    print(decodeData);
+
+    return true;
+  }
+
+  Future<List<CamapanaModel>> cargarCampanas() async {
+    //final url = "";
+    final resp = await http.get(url);
+
+    final Map<String, dynamic> decodedData = json.decode(resp.body);
+    final List<CamapanaModel> campanas = new List();
+
+    if (decodedData == null) return [];
+    print(decodedData);
+    decodedData.forEach((id, camp) {
+      final donaTemp = CamapanaModel.fromJson(camp);
+      campanas.add(donaTemp);
+    });
+    this.lista = campanas;
+
+    return campanas;
+  }
+
+  List<CamapanaModel> filtroCampanas(String nombre) {
+    List<CamapanaModel> c = new List();
+    cargarCampanas();
+    this.lista.forEach((i) {
+      if (i.nombre.contains(nombre)) {
+        c.add(i);
+      }
+    });
+    return c;
   }
 }
