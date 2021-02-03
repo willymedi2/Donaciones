@@ -1,5 +1,8 @@
+// import 'package:donaciones_fronted/src/models/camapana_model.dart';
 import 'package:donaciones_fronted/src/models/donacion_model.dart';
+import 'package:donaciones_fronted/src/providers/campana_provider.dart';
 import 'package:donaciones_fronted/src/providers/donacion_provider.dart';
+
 import 'package:flutter/material.dart';
 
 class DonacionPage extends StatefulWidget {
@@ -9,8 +12,11 @@ class DonacionPage extends StatefulWidget {
 
 class _DonacionPageState extends State<DonacionPage> {
   final formKey = GlobalKey<FormState>();
+  String opcionC;
 
   DonacionModel donacion = new DonacionModel();
+  final campanaProvider = new CampanaProvider();
+
   final donacionProvider = new DonacionProvider();
 
   @override
@@ -31,6 +37,7 @@ class _DonacionPageState extends State<DonacionPage> {
               _crearCategoria(),
               _crearMetodo(),
               _crearObservacion(),
+              // _crearCampana(),
               _crearBoton()
             ],
           ),
@@ -38,6 +45,27 @@ class _DonacionPageState extends State<DonacionPage> {
       ),
     );
   }
+
+  // Widget _crearCampana() {
+  //   List<CamapanaModel> lista = campanaProvider.agregarCampanas();
+
+  //   return DropdownButtonFormField(
+  //     onChanged: (value) {
+  //       setState(() {
+  //         opcionC = value;
+  //       });
+  //       print("c $opcionC");
+  //     },
+  //     hint: Text("Selecciona la campaña"),
+  //     value: opcionC,
+  //     items: lista.map<DropdownMenuItem<String>>((CamapanaModel campana) {
+  //       return DropdownMenuItem<String>(
+  //         child: Text(campana.nombre),
+  //         value: campana.id.toString(),
+  //       );
+  //     }).toList(),
+  //   );
+  // }
 
   Widget _crearCategoria() {
     return TextFormField(

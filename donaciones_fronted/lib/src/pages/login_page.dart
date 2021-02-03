@@ -20,6 +20,10 @@ class LoginPage extends StatelessWidget {
                   height: 300.0,
                 ),
               ),
+              Center(
+                  child: Text("Inicia Sesión",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 25.0))),
               SizedBox(
                 height: 15.0,
               ),
@@ -32,6 +36,11 @@ class LoginPage extends StatelessWidget {
                 height: 20.0,
               ),
               _bottonLogin(bloc, context),
+              FlatButton(
+                child: Text("Crear una nueva cuenta"),
+                onPressed: () =>
+                    Navigator.pushReplacementNamed(context, "registro"),
+              )
             ],
           ),
         ),

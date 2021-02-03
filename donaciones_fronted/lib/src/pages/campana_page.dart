@@ -16,7 +16,7 @@ class _CampanaPageState extends State<CampanaPage> {
         children: <Widget>[
           Image(
             alignment: Alignment.topCenter,
-            image: AssetImage("charity.png"),
+            image: AssetImage("images/charity.png"),
             fit: BoxFit.contain,
             width: double.infinity,
           ),
@@ -38,7 +38,7 @@ class _CampanaPageState extends State<CampanaPage> {
                 Text(
                   "Campañas",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 35,
                       fontFamily: 'CentraleSansRegular'),
                 ),
@@ -47,7 +47,7 @@ class _CampanaPageState extends State<CampanaPage> {
                   children: <Widget>[
                     Text("Ultimas Campañas",
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 35,
                             fontFamily: 'CentraleSansRegular',
                             fontWeight: FontWeight.w100))
