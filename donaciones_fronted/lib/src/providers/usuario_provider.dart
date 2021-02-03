@@ -8,9 +8,10 @@ class UsuarioProvider {
   final _prefs = new PreferenciasUsuario();
 
   Future<Map<String, dynamic>> login(String usuario, String password) async {
-    final url = 'ws';
+    final String url = 'http://10.0.2.2:8000/campana/';
 
-    final resp = await http.post(url, body: usuario.toJson());
+    var map = {"id": 1, "user": usuario};
+    final resp = await http.post(url, body: map);
 
     Map<String, dynamic> decodedResp = json.decode(resp.body);
     print(decodedResp);
@@ -23,7 +24,7 @@ class UsuarioProvider {
   }
 
   Future<Map<String, dynamic>> nuevoUsuario(UsuarioModel usuario) async {
-    final url = 'ws';
+    final String url = 'http://10.0.2.2:8000/campana/';
 
     final resp = await http.post(url, body: usuario.toJson());
 

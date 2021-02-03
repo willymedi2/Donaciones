@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class CampanaProvider {
-  final String url = 'http://10.0.2.2:8000/campana/';
+  final String url = 'http://192.168.0.108:8000/campana/';
   List<CamapanaModel> lista = new List();
 
   List<CamapanaModel> agregarCampanas() {

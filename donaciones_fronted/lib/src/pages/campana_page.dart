@@ -14,10 +14,10 @@ class CampanaPage extends StatefulWidget {
 
 class _CampanaPageState extends State<CampanaPage> {
   final formKey = GlobalKey<FormState>();
-
+  final campaign = new CampanaProvider();
   @override
   Widget build(BuildContext context) {
-    //final bloc = Providerr.ofCampana(context);
+    final bloc = Providerr.ofCampana(context);
     //CampanaProvider c = new CampanaProvider();
 
     //print(c.cargarCampanas());
@@ -26,7 +26,7 @@ class _CampanaPageState extends State<CampanaPage> {
         children: <Widget>[
           Image(
             alignment: Alignment.topCenter,
-            image: AssetImage("images/charity.jpeg"),
+            image: AssetImage("images/charity2.png"),
             fit: BoxFit.contain,
             width: double.infinity,
           ),
@@ -41,7 +41,7 @@ class _CampanaPageState extends State<CampanaPage> {
                   alignment: Alignment.centerRight,
                   child: Icon(
                     Icons.search,
-                    color: Colors.white,
+                    color: Colors.black,
                     size: 30,
                   ),
                 ),
@@ -51,17 +51,6 @@ class _CampanaPageState extends State<CampanaPage> {
                       color: Colors.black,
                       fontSize: 35,
                       fontFamily: 'CentraleSansRegular'),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text("Ultimas Campañas",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 35,
-                            fontFamily: 'CentraleSansRegular',
-                            fontWeight: FontWeight.w100))
-                  ],
                 )
               ],
             ),
@@ -82,11 +71,43 @@ class _CampanaPageState extends State<CampanaPage> {
               margin: EdgeInsets.only(top: 370),
               height: 400,
               width: 400,
-              child:
-                  campanas() /*ListView(
+              child: FutureBuilder(
+                future: campaign.cargarCampanas(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<CamapanaModel>> snapshot) {
+                  //print("hOLAS" + snapshot.data.toString());
+                  if (snapshot.hasData) {
+                    final campanias = snapshot.data;
+                    print("hOLAS" + snapshot.data.toString());
+                    return ListView.builder(
+                      itemCount: campanias.length,
+                      itemBuilder: (context, i) => _crearItem(campanias[i]),
+                    );
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
+              )
+              /*ListView(
               children: <Widget>[
                 //aqui irian todas las campanias y los filtros de las mismas
-                campanas(),
+                FutureBuilder(
+                  future: campaign.cargarCampanas(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<CamapanaModel>> snapshot) {
+                    //print("hOLAS" + snapshot.data.toString());
+                    if (snapshot.hasData) {
+                      final campanias = snapshot.data;
+                      print("hOLAS" + snapshot.data.toString());
+                      return ListView.builder(
+                        itemCount: campanias.length,
+                        itemBuilder: (context, i) => _crearItem(campanias[i]),
+                      );
+                    }else {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
                 Center(
                     child: Text("Crear Campana",
                         style: TextStyle(
@@ -113,12 +134,12 @@ class _CampanaPageState extends State<CampanaPage> {
   }
 }
 
-Widget campanas() {
-  CampanaProvider c = new CampanaProvider();
+/*Widget campanas() {
   return FutureBuilder(
-    future: c.cargarCampanas(),
+    future: campaign.cargarCampanas(),
     builder:
         (BuildContext context, AsyncSnapshot<List<CamapanaModel>> snapshot) {
+      print("hOLAS" + snapshot.data.toString());
       if (snapshot.hasData) {
         final campanias = snapshot.data;
         return ListView.builder(
@@ -130,7 +151,7 @@ Widget campanas() {
       }
     },
   );
-}
+}*/
 
 Widget _crearItem(CamapanaModel campania) {
   return ListTile(
