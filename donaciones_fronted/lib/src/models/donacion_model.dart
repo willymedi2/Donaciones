@@ -39,12 +39,10 @@ class DonacionModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
         "categoria": categoria,
         "metodo": metodo,
         "observacion": observacion,
-        "user": user,
-        "campana": campana,
-        "fecha": fecha,
+        "user": user.toString(),
+        "campana": campana.toString(),
       };
 }

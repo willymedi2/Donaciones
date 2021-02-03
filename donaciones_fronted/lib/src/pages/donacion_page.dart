@@ -71,7 +71,7 @@ class _DonacionPageState extends State<DonacionPage> {
     return TextFormField(
       textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(labelText: 'Categoria'),
-      onSaved: (value) => donacion.categoria,
+      onSaved: (value) => donacion.categoria = value,
       validator: (value) {
         if (value.length < 6) {
           return "Ingrese el nombre de la categoria";
@@ -86,7 +86,7 @@ class _DonacionPageState extends State<DonacionPage> {
     return TextFormField(
       textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(labelText: 'Metodo'),
-      onSaved: (value) => donacion.metodo,
+      onSaved: (value) => donacion.metodo = value,
       validator: (value) {
         if (value.length < 6) {
           return "Ingrese el nombre del metodo";
@@ -101,7 +101,7 @@ class _DonacionPageState extends State<DonacionPage> {
     return TextFormField(
       textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(labelText: 'Observación'),
-      onSaved: (value) => donacion.observacion,
+      onSaved: (value) => donacion.observacion = value,
       validator: (value) {
         if (value.length < 6) {
           return "Ingrese el nombre de la observación";
@@ -117,7 +117,7 @@ class _DonacionPageState extends State<DonacionPage> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       label: Text("Guardar"),
       icon: Icon(Icons.save),
-      onPressed: () {},
+      onPressed: () => _submit(),
     );
   }
 
@@ -125,7 +125,14 @@ class _DonacionPageState extends State<DonacionPage> {
     if (!formKey.currentState.validate()) return;
 
     formKey.currentState.save();
+
+    print(donacion.categoria);
+    print(donacion.metodo);
+    print(donacion.observacion);
     print("Todo OK!");
-    // donacionProvider.crearDonacion(donacion);
+
+    donacion.campana = 1;
+    donacion.user = 1;
+    donacionProvider.crearDonacion(donacion);
   }
 }
