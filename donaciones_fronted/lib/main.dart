@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       child: MultiProvider(
         providers: [ChangeNotifierProvider(create: (_) => new UiProvider())],
         child: MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Donaciones',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: Colors.blue,

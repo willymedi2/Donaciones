@@ -115,7 +115,6 @@ class LoginPage extends StatelessWidget {
     print("Email: ${bloc.user}");
     print("Password: ${bloc.password}");
     print("====================");
-
     Navigator.pushReplacementNamed(context, HomePage.id);
   }
 }

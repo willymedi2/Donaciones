@@ -150,7 +150,6 @@ Widget _bottonLogin(CampanaBloc bloc, BuildContext context) {
 
 _postCampana(CampanaBloc bloc, BuildContext context) {
   print("====================");
-  print("Email: ${bloc.user}");
-  print("Nombre Campana: ${bloc.nameStream}");
+  print("Nombre Campana: ${bloc.name}");
   print("====================");
 }
