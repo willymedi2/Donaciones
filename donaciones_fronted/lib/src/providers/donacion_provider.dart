@@ -4,7 +4,7 @@ import 'package:donaciones_fronted/src/models/donacion_model.dart';
 import 'package:http/http.dart' as http;
 
 class DonacionProvider {
-  final String _url = '';
+  // final String _url = '';
 
   Future<bool> crearDonacion(DonacionModel donacion) async {
     final url = '';
@@ -17,10 +17,10 @@ class DonacionProvider {
   }
 
   Future<List<DonacionModel>> cargarDonaciones() async {
-    final url = "";
+    final url = "http://192.168.0.108:8000/donaciones/";
     final resp = await http.get(url);
 
-    final Map<String, dynamic> decodedData = json.decode(resp.body);
+    final List<String, dynamic> decodedData = json.decode(resp.body);
     final List<DonacionModel> donaciones = new List();
 
     if (decodedData == null) return [];
