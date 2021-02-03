@@ -1,3 +1,5 @@
+import 'package:donaciones_fronted/src/bloc/provider.dart';
+import 'package:donaciones_fronted/src//bloc/campana_bloc.dart';
 import 'package:flutter/material.dart';
 //import 'package:line_awesome_icons/line_awesome_icons.dart';
 
@@ -11,6 +13,7 @@ class _CampanaPageState extends State<CampanaPage> {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = Providerr.ofCampana(context);
     return SingleChildScrollView(
       child: Stack(
         children: <Widget>[
@@ -75,11 +78,79 @@ class _CampanaPageState extends State<CampanaPage> {
             child: ListView(
               children: <Widget>[
                 //aqui irian todas las campanias y los filtros de las mismas
+
+                Center(
+                    child: Text("Crear Campana",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 25.0))),
+                SizedBox(
+                  height: 15.0,
+                ),
+                _nameTextField(bloc),
+                SizedBox(
+                  height: 15.0,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _bottonLogin(bloc, context),
+                  ],
+                )
               ],
             ),
-          )
+          ),
         ],
       ),
     );
   }
+}
+
+Widget _nameTextField(CampanaBloc bloc) {
+  return StreamBuilder(
+      stream: bloc.nameStream,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return Container(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: TextField(
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+                icon: Icon(Icons.campaign),
+                hintText: 'nombre',
+                labelText: "Nombre",
+                counterText: snapshot.data,
+                errorText: snapshot.error),
+            onChanged: (value) => bloc.changeName(value),
+          ),
+        );
+      });
+}
+
+Widget _bottonLogin(CampanaBloc bloc, BuildContext context) {
+  return StreamBuilder(
+    stream: bloc.formValidStream,
+    builder: (BuildContext context, AsyncSnapshot snapshot) {
+      return RaisedButton(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
+            child: Text(
+              "Crear",
+              style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),
+            ),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          elevation: 10.0,
+          color: Colors.yellow,
+          onPressed:
+              snapshot.hasData ? () => _postCampana(bloc, context) : null);
+    },
+  );
+}
+
+_postCampana(CampanaBloc bloc, BuildContext context) {
+  print("====================");
+  print("Email: ${bloc.user}");
+  print("Nombre Campana: ${bloc.nameStream}");
+  print("====================");
 }
