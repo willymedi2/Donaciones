@@ -1,5 +1,6 @@
 import 'package:donaciones_fronted/src/bloc/provider.dart';
 import 'package:donaciones_fronted/src//bloc/campana_bloc.dart';
+import 'package:donaciones_fronted/src/models/camapana_model.dart';
 import 'package:donaciones_fronted/src/providers/campana_provider.dart';
 import 'package:flutter/material.dart';
 //import 'package:line_awesome_icons/line_awesome_icons.dart';
@@ -16,15 +17,16 @@ class _CampanaPageState extends State<CampanaPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Providerr.ofCampana(context);
-    CampanaProvider c = new CampanaProvider();
-    print(c.cargarCampanas());
+    //final bloc = Providerr.ofCampana(context);
+    //CampanaProvider c = new CampanaProvider();
+
+    //print(c.cargarCampanas());
     return SingleChildScrollView(
       child: Stack(
         children: <Widget>[
           Image(
             alignment: Alignment.topCenter,
-            image: AssetImage("images/charity.png"),
+            image: AssetImage("images/charity.jpeg"),
             fit: BoxFit.contain,
             width: double.infinity,
           ),
@@ -77,13 +79,14 @@ class _CampanaPageState extends State<CampanaPage> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 370),
-            height: 400,
-            width: 400,
-            child: ListView(
+              margin: EdgeInsets.only(top: 370),
+              height: 400,
+              width: 400,
+              child:
+                  campanas() /*ListView(
               children: <Widget>[
                 //aqui irian todas las campanias y los filtros de las mismas
-
+                campanas(),
                 Center(
                     child: Text("Crear Campana",
                         style: TextStyle(
@@ -102,12 +105,46 @@ class _CampanaPageState extends State<CampanaPage> {
                   ],
                 )
               ],
-            ),
-          ),
+            ),*/
+              ),
         ],
       ),
     );
   }
+}
+
+Widget campanas() {
+  CampanaProvider c = new CampanaProvider();
+  return FutureBuilder(
+    future: c.cargarCampanas(),
+    builder:
+        (BuildContext context, AsyncSnapshot<List<CamapanaModel>> snapshot) {
+      if (snapshot.hasData) {
+        final campanias = snapshot.data;
+        return ListView.builder(
+          itemCount: campanias.length,
+          itemBuilder: (context, i) => _crearItem(campanias[i]),
+        );
+      } else {
+        return Center(child: CircularProgressIndicator());
+      }
+    },
+  );
+}
+
+Widget _crearItem(CamapanaModel campania) {
+  return ListTile(
+      leading: Image.asset('images/campana.png'),
+      title: Text(campania.nombre,
+          style: TextStyle(
+              fontFamily: "CentraleSansRegular",
+              fontSize: 18,
+              fontWeight: FontWeight.bold)),
+      subtitle: Text("Campaña",
+          style: TextStyle(
+            fontFamily: "CentraleSansRegular",
+            fontSize: 15,
+          )));
 }
 
 Widget _nameTextField(CampanaBloc bloc) {

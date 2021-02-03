@@ -48,6 +48,7 @@ class DonacionesAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     list_display = ('id', 'categoria','metodo','user','campana','observacion', 'fecha',)
     resource_class = CampanaResource
 
+
 admin.site.register(Persona, PersonaAdmin)
 admin.site.register(Login, LoginAdmin)
 admin.site.register(Campana, CampanaAdmin)
