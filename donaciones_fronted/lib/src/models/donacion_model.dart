@@ -44,5 +44,6 @@ class DonacionModel {
         "observacion": observacion,
         "user": user.toString(),
         "campana": campana.toString(),
+        "fecha": DateTime.now().toString()
       };
 }
