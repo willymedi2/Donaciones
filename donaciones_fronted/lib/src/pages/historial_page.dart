@@ -15,7 +15,7 @@ class HistorialPage extends StatelessWidget {
           final donaciones = snapshot.data;
           return ListView.builder(
             itemCount: donaciones.length,
-            itemBuilder: (context, i) {donaciones[i]},
+            itemBuilder: (context, i) => _crearItem(donaciones[i]),
           );
         } else {
           return Center(child: CircularProgressIndicator());
@@ -27,8 +27,7 @@ class HistorialPage extends StatelessWidget {
   Widget _crearItem(DonacionModel donacion) {
     return ListTile(
       title: Text(donacion.metodo),
-      subtitle: Text(donacion.observacion) ,
-
+      subtitle: Text(donacion.observacion),
     );
   }
 }

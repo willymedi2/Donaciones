@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class CampanaProvider {
-  final String url = 'http://127.0.0.1:8000/campana/';
+  final String url = 'http://10.0.2.2:8000/campana/';
   List<CamapanaModel> lista = new List();
 
   List<CamapanaModel> agregarCampanas() {
@@ -24,7 +24,7 @@ class CampanaProvider {
   }
 
   Future<bool> crearCampana(CamapanaModel campana) async {
-    final url = '';
+    //final url = '';
     final resp = await http.post(url, body: campana.toJson());
     final decodeData = json.decode(resp.body);
 
@@ -37,12 +37,12 @@ class CampanaProvider {
     //final url = "";
     final resp = await http.get(url);
 
-    final Map<String, dynamic> decodedData = json.decode(resp.body);
+    final List<dynamic> decodedData = json.decode(resp.body);
     final List<CamapanaModel> campanas = new List();
 
     if (decodedData == null) return [];
     print(decodedData);
-    decodedData.forEach((id, camp) {
+    decodedData.forEach((camp) {
       final donaTemp = CamapanaModel.fromJson(camp);
       campanas.add(donaTemp);
     });

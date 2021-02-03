@@ -12,7 +12,7 @@ class PersonaSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = Login
-        fields = ('id', 'user')
+        fields = ('id', 'user','password',)
 
 
 class CampanaSerializer(serializers.ModelSerializer):
