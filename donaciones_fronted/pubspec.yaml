@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   rxdart: ^0.25.0
   http:
+  shared_preferences:
   provider: ^4.3.3
 
 dev_dependencies:

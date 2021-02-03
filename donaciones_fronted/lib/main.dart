@@ -3,11 +3,14 @@ import 'package:donaciones_fronted/src/bloc/provider.dart';
 import 'package:donaciones_fronted/src/pages/home_page.dart';
 import 'package:donaciones_fronted/src/pages/login_page.dart';
 import 'package:donaciones_fronted/src/pages/register_page.dart';
+import 'package:donaciones_fronted/src/preferencias_usuario/preferencias_usuario.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  final prefs = new PreferenciasUsuario();
+  await prefs.initPrefs();
   runApp(MyApp());
 }
 
